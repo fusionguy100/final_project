@@ -19,79 +19,100 @@ feature_img = Image.open("feature_importance.png")
 conf_img = Image.open("confusion_matrix.png")
 roc_img = Image.open("roc_curve.png")
 
-# Title
+# Title and project summary
 st.markdown("# 📊 Customer Churn Prediction Dashboard")
 st.markdown("A simple, interactive dashboard to understand and visualize customer churn predictions.")
 st.markdown("---")
 
-# How to use
+# 🧠 How to Use
 st.markdown("## 🧭 How to Use This Dashboard")
 st.markdown("""
-1. Explore churn prediction results using graphs and metrics.
-2. Learn which features contribute most to churn risk.
-3. Use the classification report to evaluate model performance.
-4. Ideal for business users and evaluators who want quick insights.
+This dashboard helps you explore predictions made by a machine learning model trained to detect telecom customer churn.
+
+You can:
+- Understand which customer traits increase churn risk (Feature Importance)
+- See how accurate the model is (Confusion Matrix and ROC Curve)
+- Read model performance metrics (Classification Report)
+
+Each section below includes explanations to help non-technical viewers interpret the results.
 """)
 
-# Project Summary
-st.markdown("## 🧠 Project Summary")
+# Project summary
+st.markdown("### 🧠 Project Summary")
 st.markdown("""
 This dashboard uses a logistic regression model to predict customer churn in a telecom company.
 It highlights which customers are most likely to leave and why, helping the business take early action.
 
 - **Model Type**: Logistic Regression  
 - **Goal**: Predict customer churn before it happens  
-- **AUC Score**: **0.83** (good predictive accuracy)
+- **AUC Score**: **0.83** (good prediction accuracy)
 """)
-st.markdown("---")
 
-# Feature Importance
-st.markdown("## 🔍 Feature Importance")
+st.markdown("---")
+st.markdown("## 🔢 Key Metrics")
+
+# 🔍 Feature Importance
+st.markdown("### 🔍 Feature Importance")
 st.markdown("""
-This chart shows which customer features are most important for predicting churn.  
+This chart shows which customer attributes matter most in predicting churn.
 - **Negative values** = reduce churn risk  
 - **Positive values** = increase churn risk  
-- Example: Customers with longer tenure tend to stay; month-to-month contracts increase churn
+- Example: Longer tenure reduces churn risk. Month-to-month contracts increase it.
 """)
 st.image(feature_img, caption="Feature Importance from Logistic Regression")
 
-# Confusion Matrix
-st.markdown("## 📊 Confusion Matrix")
+# 📊 Confusion Matrix
+st.markdown("### 📊 Confusion Matrix")
 st.markdown("""
-The confusion matrix shows how well the model predicted churn vs. reality:  
-- **922** were correctly predicted as not churning  
-- **185** were correctly predicted as churning  
-- **111** were incorrectly predicted as churning  
-- **189** were missed churns (predicted to stay, but left)
+This table shows how well the model predicted churn:
+- **True Positive (185)**: Model correctly predicted the customer would churn  
+- **True Negative (922)**: Model correctly predicted the customer would stay  
+- **False Positive (111)**: Model incorrectly predicted churn  
+- **False Negative (189)**: Model missed predicting actual churn
 
-Use this to see how accurate the model’s decisions were.
+> ✅ **Higher values in the diagonals = better model performance**
 """)
 st.image(conf_img, caption="Confusion Matrix")
 
-# ROC Curve
-st.markdown("## 📈 ROC Curve (AUC: 0.83)")
+# 📈 ROC Curve
+st.markdown("### 📈 ROC Curve (Receiver Operating Characteristic)")
 st.markdown("""
-The ROC curve tells how good the model is at separating churners from non-churners.  
-- The **higher the curve**, the better.  
-- The **AUC score of 0.83** means the model has solid predictive power.
+This curve shows how well the model separates churners from non-churners across all probability thresholds.
+
+- **AUC = 0.83** means the model has an 83% chance of correctly ranking a random churner higher than a random non-churner.
+- A perfect model would have an AUC of 1.0  
+- The dashed line shows a random guess (AUC = 0.5)
+
+> ✅ **Higher curve and AUC score = better performance**
 """)
-st.image(roc_img, caption="ROC Curve with AUC Score")
+st.image(roc_img, caption="ROC Curve (AUC: 0.83)")
 
-# Classification Report
-st.markdown("## 📄 Classification Report")
+# 📄 Classification Report
+st.markdown("### 📄 Classification Report")
 st.markdown("""
-This report shows precision, recall, and F1-score for both churn and non-churn classes.
+This report shows precision, recall, and F1-score for both churn and non-churn predictions.
 
-- **Precision**: % of churn predictions that were correct  
-- **Recall**: % of actual churns correctly caught  
-- **F1-score**: Combines precision and recall  
+- **Precision**: How many predicted churns were correct  
+- **Recall**: How many actual churns were correctly predicted  
+- **F1-score**: Harmonic average of precision and recall
 
-```plaintext
-              precision    recall  f1-score   support
+> ✅ Use this to judge the balance between false alarms and missed churns
+""")
+with open("classification_report.txt", "r") as f:
+    st.text(f.read())
 
-     0           0.83      0.89      0.86      1033
-     1           0.62      0.49      0.55       374
+# 📁 Project Success Benchmarks
+st.markdown("## ✅ Project Success Benchmarks")
+st.markdown("""
+| Metric                             | Goal     | Achieved | Status |
+|------------------------------------|----------|----------|--------|
+| AUC Score                          | ≥ 0.80   | **0.83** | ✅ Met |
+| Accuracy                           | ≥ 75%    | ✔️       | ✅ Met |
+| Feature Interpretability           | Clear    | ✔️       | ✅ Met |
+| Usable Dashboard                   | Yes      | ✔️       | ✅ Met |
+| Churn Risk + Trends Visualized     | Yes      | ✔️       | ✅ Met |
+""")
 
-accuracy                         0.79      1407
-macro avg        0.73      0.69      0.71      1407
-weighted avg     0.78      0.79      0.78      1407
+# Footer
+st.markdown("---")
+st.markdown("This dashboard was created as part of a capstone project to demonstrate explainable machine learning for customer churn.")
