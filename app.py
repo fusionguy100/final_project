@@ -107,7 +107,7 @@ st.markdown("""
 | Metric                             | Goal     | Achieved | Status |
 |------------------------------------|----------|----------|--------|
 | AUC Score                          | ≥ 0.80   | **0.83** | ✅ Met |
-| Accuracy                           | ≥ 75%    | ✔️       | ✅ Met |
+| Accuracy                           | ≥ 75%    | **0.79 (79%)**       | ✅ Met |
 | Feature Interpretability           | Clear    | ✔️       | ✅ Met |
 | Usable Dashboard                   | Yes      | ✔️       | ✅ Met |
 | Churn Risk + Trends Visualized     | Yes      | ✔️       | ✅ Met |
