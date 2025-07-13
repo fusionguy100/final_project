@@ -24,7 +24,7 @@ st.markdown("# 📊 Customer Churn Prediction Dashboard")
 st.markdown("A simple, interactive dashboard to understand and visualize customer churn predictions.")
 st.markdown("---")
 
-# 🧠 How to Use
+#  How to Use
 st.markdown("## 🧭 How to Use This Dashboard")
 st.markdown("""
 This dashboard helps you explore predictions made by a machine learning model trained to detect telecom customer churn.
@@ -38,7 +38,7 @@ Each section below includes explanations to help non-technical viewers interpret
 """)
 
 # Project summary
-st.markdown("### 🧠 Project Summary")
+st.markdown("###  Project Summary")
 st.markdown("""
 This dashboard uses a logistic regression model to predict customer churn in a telecom company.
 It highlights which customers are most likely to leave and why, helping the business take early action.
@@ -52,7 +52,7 @@ st.markdown("---")
 st.markdown("## 🔢 Key Metrics")
 
 # 🔍 Feature Importance
-st.markdown("### 🔍 Feature Importance")
+st.markdown("###  Feature Importance")
 st.markdown("""
 This chart shows which customer attributes matter most in predicting churn.
 - **Negative values** = reduce churn risk  
